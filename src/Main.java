@@ -124,18 +124,37 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите размер массива: ");
-        int size = scanner.nextInt();
+        int size;
+        int min;
+        int max;
 
-        if (size <= 0) {
-            System.out.println("Ошибка: размер массива должен быть больше 0");
+        try {
+            System.out.print("Введите размер массива: ");
+            size = Integer.parseInt(scanner.nextLine());
+            if (size <= 0) {
+                System.out.println("Ошибка: размер массива должен быть больше 0");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Введены некорректные данные: " + e.getMessage());
             return;
         }
 
-        System.out.print("Введите минимальное значение для генерации: ");
-        int min = scanner.nextInt();
-        System.out.print("Введите максимальное значение для генерации: ");
-        int max = scanner.nextInt();
+        try {
+            System.out.print("Введите минимальное значение для генерации: ");
+            min = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Введены некорректные данные: " + e.getMessage());
+            return;
+        }
+
+        try {
+            System.out.print("Введите максимальное значение для генерации: ");
+            max = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Введены некорректные данные: " + e.getMessage());
+            return;
+        }
 
         // Заполнение и сортировка целочисленного массива
         int[] intArray = genIntArray(size, min, max);
